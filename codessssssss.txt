@@ -1,0 +1,229 @@
+py -m pip install Django
+django-admin --version
+django-admin startproject ccprac1
+cd ccprac1
+py manage.py runserver
+
+
+
+
+
+[Postman]
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded ({extended : false}))
+
+app.use(bodyParser.json())
+
+app.listen(3000)
+
+app.get('/' , (req,res) => {
+  console.log(req.body)
+  res.json(req.body)  
+})
+
+
+
+
+
+ORRRRRRRRRRRRRRRRRRRR
+
+
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+
+// Middleware to parse URL-encoded data
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Middleware to parse JSON data
+app.use(bodyParser.json());
+
+// Define the port
+const PORT = 1000;
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+// Define a route for the root path
+app.get('/', (req, res) => {
+  console.log('Received a request at /');
+  console.log(req.body);
+  res.json(req.body);
+});
+
+
+
+
+
+
+
+
+
+
+[Firebase]
+const express =require("express");
+const app = express();
+const port = 1000;
+
+app.use(express.static("src"));
+
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/src/index.html");
+});
+res.sendFile(__dirname + "/src/index.html");
+
+app.listen(port, () => {
+
+console.log('Server running at http://localhost:${port}');
+});
+
+
+
+Steps:
+npm install firebase
+npm install -g firebase-tools
+firebase --version
+firebase login 
+npm install express
+npm run build
+firebase init
+firebase deploy
+
+
+
+
+[EC2 ]
+sudo -i
+yum update -y
+yum install httpd -y
+cd /var/www/html
+wget https://www.toolplate.com/zip-templates/2135_mini_finance.zip
+unzip 2135_mini_finance.zip
+
+cp -r 2135_mini_finance/* /var/www/html
+ls
+rm -rf 2135_mini_finance 2135_mini_finance.zip
+systemctl enable httpd
+systemctl start httpd
+
+
+
+
+
+
+In AWS (Amazon Web Services), the `ls` command and its variants are used in a Linux-based environment, such as EC2 instances (virtual servers) running Linux/Unix distributions. These commands list files and directories in the file system and provide detailed information depending on the flags you use. Below is a detailed explanation of the commonly used `ls` commands:
+
+### 1. `ls` (List files and directories)
+The basic `ls` command lists the files and directories in the current working directory. It does not show hidden files (files that start with a dot).
+
+**Example**:
+```bash
+ls
+```
+- **Output**: 
+  - A simple list of files and directories in the current directory.
+  - Example output: 
+    ```
+    Documents  Downloads  Pictures  Projects
+    ```
+
+### 2. `ls -a` (List all files, including hidden files)
+The `-a` flag lists all files in the directory, including hidden files. Hidden files are files that start with a dot (`.`), such as `.bashrc` or `.gitignore`.
+
+**Example**:
+```bash
+ls -a
+```
+- **Output**: 
+  - Lists all files, including hidden ones.
+  - Example output:
+    ```
+    .  ..  .bashrc  Documents  Downloads  Pictures  Projects
+    ```
+
+  - The `.` represents the current directory, and `..` represents the parent directory.
+
+### 3. `ls -l` (List files with detailed information)
+The `-l` flag displays detailed information about the files and directories, including:
+- File permissions
+- Number of links
+- Owner
+- Group
+- File size
+- Last modification date and time
+- File/directory name
+
+**Example**:
+```bash
+ls -l
+```
+- **Output**: 
+  - Detailed information about each file.
+  - Example output:
+    ```
+    -rw-r--r--  1 user1 group1  1024 Nov  5 10:00 .bashrc
+    drwxr-xr-x  2 user1 group1  4096 Nov  5 10:05 Documents
+    drwxr-xr-x  3 user1 group1  4096 Nov  5 10:06 Downloads
+    ```
+
+  In the example:
+  - The first column represents file permissions.
+  - The second column represents the number of links.
+  - The third and fourth columns are the file's owner and group.
+  - The fifth column is the file size in bytes.
+  - The sixth column shows the modification date and time.
+  - The last column shows the file or directory name.
+
+### 4. `ls -la` (List all files and directories with detailed information)
+The `-la` flag combines the functionality of `-a` (include hidden files) and `-l` (detailed listing). This command shows all files, including hidden ones, with detailed information.
+
+**Example**:
+```bash
+ls -la
+```
+- **Output**:
+  - Lists all files and directories, including hidden files, with detailed information.
+  - Example output:
+    ```
+    drwxr-xr-x  5 user1 group1  4096 Nov  5 10:00 .
+    drwxr-xr-x  3 user1 group1  4096 Nov  5 10:00 ..
+    -rw-r--r--  1 user1 group1  1024 Nov  5 10:00 .bashrc
+    drwxr-xr-x  2 user1 group1  4096 Nov  5 10:05 Documents
+    drwxr-xr-x  3 user1 group1  4096 Nov  5 10:06 Downloads
+    ```
+
+### AWS-specific considerations
+In AWS environments like EC2, you often SSH into a Linux instance to manage files. The `ls` command works the same way on EC2 instances as it does on any Linux server.
+
+You can use these commands to navigate and manage the file system within your EC2 instance, S3 buckets (via CLI), or even Lambda environments. However, for managing AWS-specific services like S3 or EFS, additional AWS CLI commands are required, such as:
+
+- **Listing files in an S3 bucket**:
+    ```bash
+    aws s3 ls s3://bucket-name
+    ```
+
+- **Listing files in an EFS file system (Elastic File System)**:
+    - SSH into your EC2 instance and use `ls` to list files within the mounted directory.
+  
+### Other Useful `ls` Options:
+- `ls -lh`: Shows detailed file information with human-readable file sizes (KB, MB, GB).
+    ```bash
+    ls -lh
+    ```
+    Example output:
+    ```
+    -rw-r--r--  1 user1 group1 1.0K Nov  5 10:00 .bashrc
+    drwxr-xr-x  2 user1 group1 4.0K Nov  5 10:05 Documents
+    ```
+
+- `ls -R`: Recursively list all files and directories, including subdirectories.
+    ```bash
+    ls -R
+    ```
+
+By using these commands, you can efficiently navigate and manage files on your AWS EC2 instances or within AWS storage services.
